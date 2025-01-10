@@ -4,19 +4,25 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Home, Inbox, Logs, Search, Sparkles } from "lucide-react";
+import { ContactRound, Home, ListCheck, Logs, MessagesSquare, Pyramid, Users } from "lucide-react";
 
 const navMain = [
   {
-    title: "Home",
+    title: "Rules",
     url: "#",
-    icon: Home,
+    icon: Pyramid,
     isActive: true,
   },
   {
-    title: "Tasks",
+    title: "Users",
     url: "#",
-    icon: Logs,
+    icon: Users ,
+    badge: "10",
+  },
+  {
+    title: "Users Messages",
+    url: "#",
+    icon: MessagesSquare  ,
     badge: "10",
   },
 ]

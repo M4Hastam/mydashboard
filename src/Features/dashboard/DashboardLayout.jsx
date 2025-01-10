@@ -20,7 +20,7 @@ export default function DashboardLayout() {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <header className="flex h-14 shrink-0 items-center gap-2">
+        <header className="flex h-14 shrink-0 items-center gap-2 sticky top-0 z-10 bg-white/30 dark:bg-background/30 backdrop-blur-md border-b border-gray-200/20">
           <div className="flex flex-1 items-center gap-2 px-3">
             <SidebarTrigger />
             <Separator orientation="vertical" className="mr-2 h-4" />
@@ -29,7 +29,6 @@ export default function DashboardLayout() {
                 <BreadcrumbItem>
                   <BreadcrumbPage className="line-clamp-1">
                     Project Management & Task Tracking
-                    <ModeToggle />
                   </BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
@@ -39,9 +38,8 @@ export default function DashboardLayout() {
             <NavActions />
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 px-4 py-10">
-          <Outlet />
-        </div>
+
+        <Outlet />
       </SidebarInset>
     </SidebarProvider>
   );

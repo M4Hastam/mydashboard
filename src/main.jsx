@@ -8,9 +8,14 @@ import {
   loader as DashboardLoader,
 } from "./Features/dashboard/DashboardLayout";
 import ErrorPage from "./components/error-page";
-import Movies from "./components/movies";
 import { ThemeProvider } from "./Features/ThemeProvider/theme-provider.jsx";
 import DashboardLayout from "./Features/dashboard/DashboardLayout";
+import Users from "./Users";
+import ChatPage from "./Chat";
+import TermsBlog from "./Features/TermsBlog/TermsBlog";
+import PrivateChat from "./privatechat";
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,12 +29,20 @@ const router = createBrowserRouter([
     loader: DashboardLoader,
     children: [
       {
-        path: "movies",
-        element: <Movies />,
+        path: "termsblog",
+        element: <TermsBlog/>,
       },
       {
-        path: "test",
-        element: <h1>test</h1>,
+        path: "Users",
+        element: <Users/>,
+      },
+      {
+        path: "chat",
+        element: <ChatPage/>,
+      },
+      {
+        path: "privatechat/:id",
+        element: <PrivateChat/>,
       },
     ],
   },

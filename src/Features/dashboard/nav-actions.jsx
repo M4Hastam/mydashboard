@@ -34,6 +34,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { ModeToggle } from "../ThemeProvider/ModeToggle"
 
 const data = [
   [
@@ -111,10 +112,10 @@ export function NavActions() {
         className="hidden font-medium text-neutral-500 md:inline-block dark:text-neutral-400">
         Edit Oct 08
       </div>
-      <Button variant="ghost" size="icon" className="h-7 w-7">
-        <Star />
-      </Button>
-      <Popover open={isOpen} onOpenChange={setIsOpen}>
+      
+        <ModeToggle/>
+    
+      {/* <Popover open={isOpen} onOpenChange={setIsOpen}>
         <PopoverTrigger asChild>
           <Button
             variant="ghost"
@@ -144,7 +145,7 @@ export function NavActions() {
             </SidebarContent>
           </Sidebar>
         </PopoverContent>
-      </Popover>
+      </Popover> */}
     </div>)
   );
 }

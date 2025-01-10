@@ -14,7 +14,7 @@ import {
   Trash2,
 } from "lucide-react";
 
-import { NavFavorites } from "@/Features/dashboard/nav-favorites";
+import { NavChannels, NavPrivateMessage } from "@/Features/dashboard/nav-channels";
 import { NavMain } from "@/Features/dashboard/nav-main";
 import { NavSecondary } from "@/Features/dashboard/nav-secondary";
 import { NavWorkspaces } from "@/Features/dashboard/nav-workspaces";
@@ -27,12 +27,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { NavUser } from "./nav-user";
-import {
-  DropdownMenuItem,
-  DropdownMenuLabel,
-} from "@radix-ui/react-dropdown-menu";
-import { DropdownMenuShortcut } from "@/components/ui/dropdown-menu";
-import { Label } from "@/components/ui/label";
+import { DropdownMenuLabel } from "@radix-ui/react-dropdown-menu";
 
 const noScrollbarStyles = `
   @layer utilities {
@@ -290,23 +285,21 @@ export function AppSidebar({ ...props }) {
         <SidebarHeader>
           {/* <TeamSwitcher teams={data.teams} /> */}
           <div className="flex justify-center items-center gap-2 md:justify-start h-full">
-  
-    <span className="flex h-5 w-5 items-center justify-center rounded-md bg-red-900 text-neutral-50 dark:bg-neutral-50 dark:text-neutral-900">
-      <Bug className="size-3" />
-    </span>
-    <DropdownMenuLabel className="text-xs text-neutral-500 dark:text-neutral-400">
-    Fuck Society
-                </DropdownMenuLabel>
-    
-    
-</div>
+            <span className="flex h-5 w-5 items-center justify-center rounded-md bg-red-900 text-neutral-50 dark:bg-neutral-50 dark:text-neutral-900">
+              <Bug className="size-3" />
+            </span>
+            <DropdownMenuLabel className="text-xs text-neutral-500 dark:text-neutral-400">
+              Fuck Society
+            </DropdownMenuLabel>
+          </div>
 
           <NavMain items={data.navMain} />
         </SidebarHeader>
         <SidebarContent className="no-scrollbar">
-          <NavFavorites favorites={data.favorites} />
-          <NavWorkspaces workspaces={data.workspaces} />
-          <NavSecondary items={data.navSecondary} className="mt-auto" />
+          <NavChannels label={"Channels"} />
+          <NavPrivateMessage label={"Private Message"}/>
+         
+          {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
         </SidebarContent>
         <SidebarFooter>
           <NavUser user={data.user} />

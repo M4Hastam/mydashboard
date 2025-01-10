@@ -63,6 +63,39 @@
   }
 }
 
+/* اسکرول‌بار برای حالت عادی */
+::-webkit-scrollbar {
+  width: 10px; /* عرض اسکرول‌بار */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #f8fafc; /* رنگ دسته اسکرول */
+  border-radius: 10px; /* گرد کردن گوشه‌ها */
+  border: 2px solid transparent; /* فضای داخلی */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #f8fafc; /* رنگ هنگام هاور */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f8fafc; /* رنگ پس‌زمینه */
+  border-radius: 10px; /* گرد کردن گوشه‌ها */
+}
+
+/* اسکرول‌بار برای حالت دارک */
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #111112; /* رنگ دسته اسکرول */
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #111112; /* رنگ هنگام هاور */
+}
+
+.dark ::-webkit-scrollbar-track {
+  background-color: #111112; /* رنگ پس‌زمینه */
+}
+
 
 
 
