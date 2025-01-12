@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ... */
+
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* مخفی کردن برای کروم، سافاری و اج */
+}
 
 
 

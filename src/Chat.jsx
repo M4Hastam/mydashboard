@@ -42,7 +42,7 @@ export default function ChatPage() {
 
   return (
     <div className="flex items-center justify-center  p-4">
-      <Card className="w-full max-w-6xl h-[700px] flex flex-col">
+      <Card className="w-full max-w-6xl h-[750px] flex flex-col">
         <CardHeader>
           <CardTitle>Chat with AI Assistant</CardTitle>
         </CardHeader>
