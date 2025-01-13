@@ -11,7 +11,6 @@ import ErrorPage from "./components/error-page";
 import { ThemeProvider } from "./Features/ThemeProvider/theme-provider.jsx";
 import DashboardLayout from "./Features/dashboard/DashboardLayout";
 import Users from "./Users";
-import ChatPage from "./Chat";
 import TermsBlog from "./Features/TermsBlog/TermsBlog";
 import PrivateChat from "./privatechat";
 
@@ -38,7 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: "chat",
-        element: <ChatPage/>,
+        element: <PrivateChat/>,
       },
       {
         path: "privatechat/:id",
