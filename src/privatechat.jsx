@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import useCheckAcceptRules from "./hooks/customhook/useCheckAcceptRules";
 
 export default function PrivateChat() {
+  useCheckAcceptRules();
   const [messages, setMessages] = useState([
     { id: 1, text: "Hey there!", sender: "other" },
     { id: 2, text: "Hi! How are you?", sender: "user" },

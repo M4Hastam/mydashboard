@@ -14,7 +14,10 @@ import {
   Trash2,
 } from "lucide-react";
 
-import { NavChannels, NavPrivateMessage } from "@/Features/dashboard/nav-channels";
+import {
+  NavChannels,
+  NavPrivateMessage,
+} from "@/Features/dashboard/nav-channels";
 import { NavMain } from "@/Features/dashboard/nav-main";
 import { NavSecondary } from "@/Features/dashboard/nav-secondary";
 import { NavWorkspaces } from "@/Features/dashboard/nav-workspaces";
@@ -293,12 +296,12 @@ export function AppSidebar({ ...props }) {
             </DropdownMenuLabel>
           </div>
 
-          <NavMain items={data.navMain} />
+          <NavMain />
         </SidebarHeader>
         <SidebarContent className="no-scrollbar">
           <NavChannels label={"Channels"} />
-          <NavPrivateMessage label={"Private Message"}/>
-         
+          <NavPrivateMessage label={"Private Message"} />
+
           {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
         </SidebarContent>
         <SidebarFooter>

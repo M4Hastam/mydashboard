@@ -3,23 +3,82 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import SocietyDialog from "./SocietyDialog";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login, RESET } from "@/redux/auth/authSlice";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
+import { Loader2 } from "lucide-react";
 
-export function LoginForm({ className, ...props }) {
+export function LoginForm({ ...props }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { toast } = useToast();
+  const { isLoading, isSuccess, isLoggedIn, user, message } = useSelector(
+    (state) => state.auth
+  );
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const loginUser = async (e) => {
+    e.preventDefault();
+    if (!username || !password) {
+      return console.log("All fields are required");
+    }
+
+    const userData = {
+      username,
+      password,
+    };
+    dispatch(login(userData));
+  };
+
+  useEffect(() => {
+    if (isSuccess && isLoggedIn && user) {
+      navigate("/dashboard/termsblog");
+      toast({
+        title: message,
+        // description: "welcome",
+      });
+
+      return;
+    }
+
+    if (message) {
+      toast({
+        title: message,
+        // description: "welcome",
+      });
+
+      dispatch(RESET());
+      return;
+    }
+  }, [isSuccess, isLoggedIn, user, navigate, message, toast, dispatch]);
+
   return (
-    <form className={cn("flex flex-col gap-6", className)} {...props}>
+    <form onSubmit={loginUser} className={cn("flex flex-col gap-6")} {...props}>
       <div className="flex flex-col items-center gap-2 text-center">
         <h1 className="text-2xl font-bold">Login to your account</h1>
         <p className="text-balance text-sm text-neutral-500 dark:text-neutral-400">
-          Enter your email below to login to your account
+          Enter your username below to login to your account
         </p>
       </div>
       <div className="grid gap-6">
         <div className="grid gap-2">
-          <Label htmlFor="email">Email</Label>
+          <Label htmlFor="email">Username</Label>
           <Input
-            id="email"
-            type="email"
-            placeholder="Fuck-You@example.com"
+            name="username"
+            type="text"
+            onChange={handleUsernameChange}
+            value={username}
+            placeholder="User-Fuck"
             required
           />
         </div>
@@ -30,13 +89,20 @@ export function LoginForm({ className, ...props }) {
                Forgot your password? 
             </a> */}
           </div>
-          <Input id="password" type="password" required />
+          <Input
+            name="password"
+            value={password}
+            onChange={handlePasswordChange}
+            type="password"
+            required
+          />
         </div>
+
         <Button
-          type="submit"
           className="w-full bg-red-900 hover:bg-red-700  dark:bg-red-900 dark:hover:bg-red-700 dark:text-white"
+          disabled={isLoading ? true : false}
         >
-          Login
+          {isLoading ? <Loader2 className="animate-spin" /> : "Login"}
         </Button>
         <SocietyDialog />
         {/* <div

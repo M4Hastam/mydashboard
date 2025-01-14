@@ -3,45 +3,45 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
-import { ContactRound, Home, ListCheck, Logs, MessagesSquare, Pyramid, Users } from "lucide-react";
+} from "@/components/ui/sidebar";
+import { MessagesSquare, Pyramid, Users } from "lucide-react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const navMain = [
   {
     title: "Rules",
-    url: "#",
+    url: "termsblog",
     icon: Pyramid,
-    isActive: true,
+    isActive: false,
   },
   {
     title: "Users",
-    url: "#",
-    icon: Users ,
+    url: "users",
+    icon: Users,
     badge: "10",
   },
   {
     title: "Users Messages",
-    url: "#",
-    icon: MessagesSquare  ,
+    url: "chat",
+    icon: MessagesSquare,
     badge: "10",
   },
-]
+];
 
-export function NavMain({
-  items
-}) {
+export function NavMain() {
   return (
-    (<SidebarMenu>
+    <SidebarMenu>
       {navMain.map((item) => (
         <SidebarMenuItem key={item.title}>
           <SidebarMenuButton asChild isActive={item.isActive}>
-            <a href={item.url}>
+            <Link to={item.url}>
               <item.icon />
               <span>{item.title}</span>
-            </a>
+            </Link>
           </SidebarMenuButton>
         </SidebarMenuItem>
       ))}
-    </SidebarMenu>)
+    </SidebarMenu>
   );
 }
