@@ -19,7 +19,7 @@ export const login = createAsyncThunk(
     try {
       return await authService.login(userData);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.response?.data || error.message)
     }
   }
 );
@@ -29,11 +29,7 @@ export const getUser = createAsyncThunk("auth/getUser", async (_, thunkAPI) => {
   try {
     return await authService.getUser();
   } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
-    return thunkAPI.rejectWithValue(message);
+    return thunkAPI.rejectWithValue(error.response?.data || error.message)
   }
 });
 
