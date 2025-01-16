@@ -7,7 +7,8 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: "",
-  acceptrules: JSON.parse(localStorage.getItem("acceptrules"))?.acceptrules || false,
+  acceptrules:
+    JSON.parse(localStorage.getItem("acceptrules"))?.acceptrules || false,
 };
 
 // Login User
@@ -17,7 +18,7 @@ export const login = createAsyncThunk(
     try {
       return await authService.login(userData);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response?.data || error.message)
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
   }
 );
@@ -27,7 +28,7 @@ export const getUser = createAsyncThunk("auth/getUser", async (_, thunkAPI) => {
   try {
     return await authService.getUser();
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.response?.data || error.message)
+    return thunkAPI.rejectWithValue(error.response?.data || error.message);
   }
 });
 
@@ -36,6 +37,8 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     RESET(state) {
+      state.user = null;
+      state.isLoggedIn = false;
       state.isSuccess = false;
       state.isLoading = false;
       state.message = "";
@@ -63,7 +66,6 @@ const authSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
-        state.isError = true;
         state.message = action.payload;
         state.user = null;
         //  toast.error(action.payload);
@@ -85,7 +87,6 @@ const authSlice = createSlice({
       })
       .addCase(getUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.isError = true;
         state.message = action.payload;
         //  toast.error(action.payload);
       });

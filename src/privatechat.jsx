@@ -81,7 +81,7 @@ export default function PrivateChat() {
         </div>
       </ScrollArea>
 
-      <footer className=" p-4 border-t  sticky bottom-0">
+      <footer className=" p-4 border-t  sticky bottom-0 bg-secondary dark:bg-background">
         <form onSubmit={handleSendMessage} className="flex space-x-2">
           <Input
             type="text"

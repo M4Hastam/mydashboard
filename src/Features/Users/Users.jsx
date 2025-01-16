@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import useCheckAcceptRules from "../../hooks/customhook/useCheckAcceptRules";
 import { getUsers } from "@/Services/getusers";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { RESET } from "@/redux/auth/authSlice";
 
 export default function Users() {
-  // const { isLoggedIn, user } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [users, setUsers] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
@@ -17,8 +21,14 @@ export default function Users() {
         setUsers(users);
       } catch (error) {
         if (error.name !== "AbortError") {
-          console.error("Failed to fetch users:", error);
+          console.error("Failed to fetch users");
         }
+        if (error.status == 400 || error.status == 401) {
+          dispatch(RESET());
+          navigate("/", { replace: true });
+        }
+
+        return;
       } finally {
         setLoading(false);
       }
@@ -29,7 +39,7 @@ export default function Users() {
     return () => {
       controller.abort();
     };
-  }, []);
+  }, [navigate, dispatch]);
   useCheckAcceptRules();
   return isLoading ? (
     <h2>Loading ..</h2>

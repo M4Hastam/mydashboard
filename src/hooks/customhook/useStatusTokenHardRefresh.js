@@ -22,7 +22,7 @@ const useStatusTokenHardRefresh = (path) => {
 
       if (!isLoggedIn) {
         // toast.info("Session expired, please login to continue");
-        navigate(path);
+        navigate(path, { replace: true });
         toast({
           title: "Your session has expired",
           description: "Please login again",
@@ -38,7 +38,7 @@ const useStatusTokenHardRefresh = (path) => {
     } else {
       checkUserStatusToken();
     }
-  }, [path, navigate, dispatch, isLoggedIn, user]);
+  }, [path, navigate, dispatch, isLoggedIn, user, toast]);
 };
 
 export default useStatusTokenHardRefresh;
