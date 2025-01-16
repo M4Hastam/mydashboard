@@ -11,6 +11,7 @@ const login = async (userData) => {
 // Get Login Status
 const getLoginStatus = async () => {
   const response = await axios.get(API_URL + "loginstatus");
+  
   return response.data;
 };
 

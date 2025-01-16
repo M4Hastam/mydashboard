@@ -11,7 +11,7 @@ import LoginPage from "./Features/login/LoginPage";
 import ErrorPage from "./components/error-page";
 import { ThemeProvider } from "./Features/ThemeProvider/theme-provider.jsx";
 import DashboardLayout from "./Features/dashboard/DashboardLayout";
-import Users from "./Users";
+import Users from "./Features/Users/Users";
 import TermsBlog from "./Features/TermsBlog/TermsBlog";
 import PrivateChat from "./privatechat";
 

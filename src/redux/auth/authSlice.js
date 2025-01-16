@@ -4,8 +4,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
   isLoggedIn: false,
   user: null,
-  friends: [],
-  isError: false,
   isSuccess: false,
   isLoading: false,
   message: "",
@@ -38,7 +36,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     RESET(state) {
-      state.isError = false;
       state.isSuccess = false;
       state.isLoading = false;
       state.message = "";

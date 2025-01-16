@@ -17,7 +17,7 @@ function useCheckAcceptRules() {
       description: "please read and accept the terms and conditions",
     });
     return;
-  });
+  }, [navigate, toast, acceptrules]);
 }
 
 export default useCheckAcceptRules;

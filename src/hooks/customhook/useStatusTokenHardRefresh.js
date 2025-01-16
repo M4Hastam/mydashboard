@@ -1,12 +1,14 @@
 import { getUser } from "@/redux/auth/authSlice";
 import authService from "@/Services/authService";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "../use-toast";
 
 const useStatusTokenHardRefresh = (path) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { toast } = useToast();
   const { isLoggedIn, user } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -21,6 +23,10 @@ const useStatusTokenHardRefresh = (path) => {
       if (!isLoggedIn) {
         // toast.info("Session expired, please login to continue");
         navigate(path);
+        toast({
+          title: "Your session has expired",
+          description: "Please login again",
+        });
         return false;
       }
       dispatch(getUser());
