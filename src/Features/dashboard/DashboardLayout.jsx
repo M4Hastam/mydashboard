@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sidebar";
 import useStatusTokenHardRefresh from "@/hooks/customhook/useStatusTokenHardRefresh";
 import { useToast } from "@/hooks/use-toast";
+import { connectWithSocketServer } from "@/socketIO/socketConnection";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
@@ -30,11 +31,12 @@ export default function DashboardLayout() {
   useEffect(() => {
     if (isLoggedIn && user && acceptrules === false) {
       toast({
-        title: "access the content",
-        description: "please read and accept the terms and conditions",
+        title: "Access the content",
+        description: "Please read and accept the terms and conditions.",
       });
       return;
     }
+    connectWithSocketServer();
   }, [acceptrules, isLoggedIn, user, toast]);
 
   return isLoggedIn && user ? (

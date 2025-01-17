@@ -30,13 +30,17 @@ export function LoginForm({ ...props }) {
   const loginUser = async (e) => {
     e.preventDefault();
     if (!username || !password) {
-      return console.log("All fields are required");
+      toast({
+        title: "All fields are required",
+      });
+      return console.error("All fields are required");
     }
 
     const userData = {
       username,
       password,
     };
+
     dispatch(login(userData));
   };
 
@@ -47,7 +51,7 @@ export function LoginForm({ ...props }) {
         title: message,
         // description: "welcome",
       });
-
+      
       return;
     }
 
@@ -79,7 +83,7 @@ export function LoginForm({ ...props }) {
             onChange={handleUsernameChange}
             value={username}
             placeholder="User-Fuck"
-            required
+            
           />
         </div>
         <div className="grid gap-2">
@@ -94,7 +98,7 @@ export function LoginForm({ ...props }) {
             value={password}
             onChange={handlePasswordChange}
             type="password"
-            required
+            
           />
         </div>
 
